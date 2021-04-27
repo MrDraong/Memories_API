@@ -1,5 +1,5 @@
 const express = require('express');
-const route = require('./routes/association');
+const route = require('./routes/routeAssociation');
 const app = express();
 
 
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
-
+app.use('fake');
 app.use(route);
 
 module.exports = app;
