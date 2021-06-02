@@ -1,7 +1,6 @@
 const express = require('express');
-const route = require('./routes/association');
+const route = require('./routes/routeAssociation.js');
 const app = express();
-
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
