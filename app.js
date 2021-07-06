@@ -1,7 +1,6 @@
 const express = require('express');
-const route = require('./routes/routeAssociation');
+const route = require('./routes/routeAssociation.js');
 const app = express();
-
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -14,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
-app.use('fake');
+
 app.use(route);
 
 module.exports = app;

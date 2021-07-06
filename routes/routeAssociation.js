@@ -1,24 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
+const Associations = require('../controller/controller.js');
 const auth = require('../middleware/auth');
 
-//const questionCtrl = require('../controllers/question.js');
+const association = new Associations();
 
-//ajouter auth après les entrypoints pour utiliser l'authentification
-router.get('/', (req, res) =>{
-    res.send("Route de base");
-});
+router.get('/api/v1/:id_lang/all', association.getAllAssociations);
 
-router.get('/all', (req, res) =>{
-    res.send("Route all");
-});
+router.get('/api/v1/:id_lang/rand', association.getRandomAssociations);
 
-router.get('/autre', (req, res) =>{
-    res.send("Une autre route");
-});
+router.get('/api/v1/:id_lang/rand/:nb', association.getXRandomAssociations);
 
-/**
+/** Middleware d'authentification : ajouter auth après les entrypoints pour utiliser l'authentification
  * router.post('/truc', auth, (req, res) =>{
  * res.send("");
  * });
