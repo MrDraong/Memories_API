@@ -48,4 +48,50 @@ module.exports = class Association {
       }
      };
 
+     async getAllAssociationsByTheme (req, res, next) {
+   
+      const queryString = 'SELECT * FROM t_lang l LEFT JOIN t_association a ON l.association = a.id_association WHERE l.lang =' + req.params.id_lang + 'AND a.theme =' + req.params.theme;
+   
+     try {
+       const results = await db.query(queryString);
+       if (results == "") {
+        res.status(404).json({ message: "No result found" });
+       } else {
+        res.status(200).json(results);
+       }
+     } catch(error) {
+       next(error)
+     }
+    };
+
+     async getRandomAssociationsByTheme (req, res, next) {
+      const queryString = 'SELECT * FROM t_lang l LEFT JOIN t_association a ON l.association = a.id_association WHERE l.lang =' + req.params.id_lang + 'AND a.theme =' + req.params.theme + ' ORDER BY RAND() LIMIT ' + req.params.nb;
+     
+      try {
+        const results = await db.query(queryString);
+        if (results == "") {
+         res.status(404).json({ message: "No result found" });
+        } else {
+         res.status(200).json(results);
+        }
+      } catch(error) {
+        next(error)
+      }
+     };
+
+     async getXRandomAssociationsByTheme (req, res, next) {
+      const queryString = 'SELECT * FROM t_lang l LEFT JOIN t_association a ON l.association = a.id_association WHERE l.lang =' + req.params.id_lang + 'AND a.theme =' + req.params.theme + ' ORDER BY RAND() LIMIT ' + req.params.nb;
+     
+      try {
+        const results = await db.query(queryString);
+        if (results == "") {
+         res.status(404).json({ message: "No result found" });
+        } else {
+         res.status(200).json(results);
+        }
+      } catch(error) {
+        next(error)
+      }
+     };
+
    }
